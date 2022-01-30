@@ -58,7 +58,7 @@ function jump() {
     audio_jump.play();
 }
 
-document.addEventListener('keydown', function (e) {
+document.addEventListener('keyup', function () {
     jump();
 });
 
@@ -81,3 +81,24 @@ document.addEventListener('keyup', event => {
         start_time()
     }
 })
+
+const mediaQuery = window.matchMedia('(max-width: 768px)');
+
+if(screen.availHeight > screen.availWidth){
+    alert("Please use Landscape!");
+}
+  
+if (mediaQuery.matches) {
+  
+document.addEventListener('touchstart', function () {
+    jump();
+});
+  
+document.addEventListener('touchstart', event => {
+    if (event) {
+        document.body.classList.remove('preload');
+        start_time()
+    }
+})
+  
+};
