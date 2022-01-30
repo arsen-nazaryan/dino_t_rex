@@ -86,7 +86,7 @@ document.addEventListener('keyup', event => {
 
 const mediaQuery = window.matchMedia('(max-width: 768px)');
   
-if (mediaQuery.matches) {
+if (mediaQuery.matches && (window.innerHeight < window.innerWidth)) {
   
 document.addEventListener('touchstart', function () {
     jump();
