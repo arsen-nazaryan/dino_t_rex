@@ -82,11 +82,9 @@ document.addEventListener('keyup', event => {
     }
 })
 
-const mediaQuery = window.matchMedia('(max-width: 768px)');
 
-if(screen.availHeight > screen.availWidth){
-    alert("Please use Landscape!");
-}
+
+const mediaQuery = window.matchMedia('(max-width: 768px)');
   
 if (mediaQuery.matches) {
   
@@ -102,3 +100,7 @@ document.addEventListener('touchstart', event => {
 })
   
 };
+
+if (window.innerHeight > window.innerWidth) {
+  alert("Please Rotate Your Phone");
+}
