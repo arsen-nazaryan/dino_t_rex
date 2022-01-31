@@ -13,46 +13,46 @@ var timeInSec = 0;
 var timer_interval;
 
 function start_time() {
-  if (timer_interval) {
-    clearInterval(timer_interval);
-  }
+    if (timer_interval) {
+        clearInterval(timer_interval);
+    }
 
-  timer_interval = setInterval(function () {
-    timeInSec += 1;
-    convertSecondsToTime();
-  }, 10);
+    timer_interval = setInterval(function () {
+        timeInSec += 1;
+        convertSecondsToTime();
+    }, 10);
 
 }
 
 function convertSecondsToTime() {
-  given_seconds = timeInSec;
+    given_seconds = timeInSec;
 
-  dateObj = new Date(given_seconds * 10);
-  minutes = dateObj.getUTCMinutes();
-  seconds = dateObj.getSeconds();
-  miliSeconds = dateObj.getMilliseconds();
+    dateObj = new Date(given_seconds * 10);
+    minutes = dateObj.getUTCMinutes();
+    seconds = dateObj.getSeconds();
+    miliSeconds = dateObj.getMilliseconds();
 
-  timeString =
-    minutes.toString().padStart(2, "0") +
-    ":" +
-    seconds.toString().padStart(2, "0") +
-    ":" +
-    (miliSeconds/10).toString().padStart(2, "0");
+    timeString =
+        minutes.toString().padStart(2, "0") +
+        ":" +
+        seconds.toString().padStart(2, "0") +
+        ":" +
+        (miliSeconds / 10).toString().padStart(2, "0");
 
-  timer.textContent = timeString;
+    timer.textContent = timeString;
 }
 
 function reset_time() {
-  clearInterval(timer_interval);
-  timeInSec = 0;
-  timer.textContent = "00:00:00";
+    clearInterval(timer_interval);
+    timeInSec = 0;
+    timer.textContent = "00:00:00";
 }
 
 function jump() {
     if (dino.classList != 'jump') {
         dino.classList.add('jump')
     }
-    setTimeout( function() {
+    setTimeout(function () {
         dino.classList.remove('jump')
     }, 600)
     audio_jump.play();
@@ -62,7 +62,7 @@ document.addEventListener('keyup', function () {
     jump();
 });
 
-let live = setInterval( function() {
+let live = setInterval(function () {
     let topDino = parseInt(window.getComputedStyle(dino).getPropertyValue('top'));
     let rightCactus = parseInt(window.getComputedStyle(cactus).getPropertyValue('right'));
 
@@ -83,24 +83,23 @@ document.addEventListener('keyup', event => {
 })
 
 
+const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
-const mediaQuery = window.matchMedia('(max-width: 768px)');
-  
-if (mediaQuery.matches && (window.innerHeight < window.innerWidth)) {
-  
-document.addEventListener('touchstart', function () {
-    jump();
-});
-  
-document.addEventListener('touchstart', event => {
-    if (event) {
-        document.body.classList.remove('preload');
-        start_time()
+if (isMobile) {
+
+    if (window.innerHeight > window.innerWidth) {
+        alert("Please Rotate Your Phone");
     }
-})
-  
-};
 
-if (window.innerHeight > window.innerWidth) {
-  alert("Please Rotate Your Phone");
-}
+    document.addEventListener('touchstart', function () {
+        jump();
+    });
+
+    document.addEventListener('touchstart', event => {
+        if (event) {
+            document.body.classList.remove('preload');
+            start_time()
+        }
+    })
+
+};

@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+
 :root {
     --speed: 1.4s;
 }
@@ -9,19 +10,25 @@
 }
 
 body {
-    height: 100vh;
     background-color: #f3f3f3;
 }
 
 .game_chrome {
-    height: 400px;
     width: 600px;
     margin: 0 auto;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
     overflow: hidden;
     position: relative;
+    padding-bottom: 60px;
+    padding-top: 175px;
 }
 
 #game_over {
@@ -32,6 +39,7 @@ body {
     background-color: red;
     top: 50%;
     left: 50%;
+    -webkit-transform: translateX(-50%);
     transform: translateX(-50%);
     display: none;
 }
@@ -43,6 +51,7 @@ body {
     background-image: url(./img/land.png);
     background-repeat: repeat;
     background-size: contain;
+    -webkit-animation: road_land .6s infinite linear;
     animation: road_land .6s infinite linear;
 }
 
@@ -66,12 +75,15 @@ body {
     position: absolute;
     top: -55px;
     right: 0;
+    -webkit-animation: move var(--speed) infinite linear;
     animation: move var(--speed) infinite linear;
+    -webkit-animation-delay: .7s;
     animation-delay: .7s;
 }
 
 .line img {
-    height: 60px;;
+    height: 60px;
+    ;
 }
 
 .elements {
@@ -83,7 +95,9 @@ body {
     background-image: url(./img/cloud.PNG);
     top: -170px;
     right: -350px;
+    -webkit-animation: move_cloud_1 var(--speed) infinite linear;
     animation: move_cloud_1 var(--speed) infinite linear;
+    -webkit-animation-delay: .2s;
     animation-delay: .2s;
 }
 
@@ -101,10 +115,12 @@ body {
     background-image: url(./img/cloud.PNG);
     top: -140px;
     right: -30px;
+    -webkit-animation: move_cloud_2 var(--speed) infinite linear;
     animation: move_cloud_2 var(--speed) infinite linear;
 }
 
-.jump  {
+.jump {
+    -webkit-animation: jump .6s infinite linear;
     animation: jump .6s infinite linear;
 }
 
@@ -123,13 +139,39 @@ body {
     font-size: 10px;
 }
 
+@-webkit-keyframes move {
+    0% {
+        right: -50px;
+    }
+    100% {
+        right: 100%;
+    }
+}
+
 @keyframes move {
     0% {
         right: -50px;
     }
-
     100% {
         right: 100%;
+    }
+}
+
+@-webkit-keyframes jump {
+    0% {
+        top: -57px;
+    }
+    25% {
+        top: -90px;
+    }
+    50% {
+        top: -140px;
+    }
+    75% {
+        top: -90px;
+    }
+    100% {
+        top: -55px;
     }
 }
 
@@ -137,21 +179,26 @@ body {
     0% {
         top: -57px;
     }
-
     25% {
         top: -90px;
     }
-
     50% {
         top: -140px;
     }
-
     75% {
         top: -90px;
     }
-
     100% {
         top: -55px;
+    }
+}
+
+@-webkit-keyframes move_cloud_1 {
+    0% {
+        right: -350px;
+    }
+    100% {
+        right: 100%;
     }
 }
 
@@ -159,7 +206,15 @@ body {
     0% {
         right: -350px;
     }
+    100% {
+        right: 100%;
+    }
+}
 
+@-webkit-keyframes move_cloud_2 {
+    0% {
+        right: -30px;
+    }
     100% {
         right: 100%;
     }
@@ -169,9 +224,17 @@ body {
     0% {
         right: -30px;
     }
-
     100% {
         right: 100%;
+    }
+}
+
+@-webkit-keyframes road_land {
+    0% {
+        background-position-x: 150px;
+    }
+    100% {
+        background-position-x: 0;
     }
 }
 
@@ -179,7 +242,6 @@ body {
     0% {
         background-position-x: 150px;
     }
-
     100% {
         background-position-x: 0;
     }
@@ -187,7 +249,7 @@ body {
 
 .preload *,
 .preload *::before,
-.preload *::after{
+.preload *::after {
     animation-duration: 0s !important;
     -webkit-animation-duration: 0s !important;
 }
